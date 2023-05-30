@@ -1,2 +1,5 @@
 node_modules
 blog-app.zip
+/terraform
+/k8s
+/jenkins
