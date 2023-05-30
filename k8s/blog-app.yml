@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blog-app-deploy
+  namespace: blog-app-ns
+  labels:
+    app: blog-app
+spec:
+  selector:
+    matchLabels:
+      app: blog-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: blog-app
+    spec:
+      containers:
+      - name: blog-container
+        image: mveyone/blog-img
+        ports:
+         - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blog-app-svc
+  namespace: blog-app-ns
+  labels:
+    app: blog-app
+spec:
+  selector:
+    app: blog-app
+  type: NodePort
+  ports:
+  - port: 3000 
+    targetPort: 3000

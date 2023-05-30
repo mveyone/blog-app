@@ -1,0 +1,1 @@
+minikube service -n namespace servicename --url

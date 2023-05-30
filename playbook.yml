@@ -1,0 +1,37 @@
+---
+- name: "automate docker build and push"
+  hosts: localhost
+  tasks:
+    - name: stop running container
+      command: docker stop blog-container
+      ignore_errors: yes
+
+    - name: remove stoped container
+      command: docker rm blog-container
+      ignore_errors: yes
+
+    - name: remove blog-app image
+      command: docker rmi blog-img
+      ignore_errors: yes
+      
+    - name: build new image
+      command: docker build -t blog-img .
+
+    - name: tag image
+      command: docker tag blog-img mveyone/blog-img
+
+    - name: Push new image
+      command: docker push mveyone/blog-img
+
+    - name: run new container
+      command: docker run -d --name blog-container -p 3000:3000 mveyone/blog-img
+
+    - name: delete ns blog-app-ns
+      command: kubectl delete ns blog-app-ns
+      ignore_errors: true
+
+    - name : create ns blog-app-ns
+      command: kubectl create ns blog-app-ns
+
+    - name : apply manifest file
+      command: kubectl apply -f k8s/blog-app.yml
