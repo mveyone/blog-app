@@ -17,10 +17,10 @@ resource "aws_security_group" "UbuntuSG" {
     cidr_blocks  = ["0.0.0.0/0"]
   }
 
-# We will use port 8000 to run k8s deployment for python app
+# We will use port 8000 to run k8s deployment for blog app
   ingress {
-    from_port = 8000
-    to_port   = 8000 
+    from_port = 3000
+    to_port   = 3000 
     protocol  = "tcp"
     cidr_blocks  = ["0.0.0.0/0"]
   }

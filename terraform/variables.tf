@@ -1,12 +1,12 @@
 # Adding the region as a variable, used in provider.tf
 variable "region" {
-  type    = string 
+  type    = us-east- 
   description = "this is the region where we will build our machine, region is saved in tfvars"
 }
 
 # Adding the ami as a variable, used in main.tf 
 variable "ami" {
-  type    = string 
+  type    = ami-053b0d53c279acc90
   description = "This is the ami for the ubuntu machine that we will use, it is saved in the tfvars"
 }
 
