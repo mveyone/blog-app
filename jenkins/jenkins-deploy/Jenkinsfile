@@ -33,9 +33,8 @@ pipeline {
                 secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                 sh """
-                cd /k8s
-                kubectl apply -f deploy.yml
-                kubectl apply -f svc.yml
+                kubectl apply -f k8s/deploy.yml
+                kubectl apply -f k8s/svc.yml
                 """
                 sleep(time: 120, unit: "SECONDS")
               }
