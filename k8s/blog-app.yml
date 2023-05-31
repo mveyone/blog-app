@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: blog-app-deploy
-  namespace: blog-app-ns
+  # namespace: blog-app-ns
   labels:
     app: blog-app
 spec:
@@ -25,13 +25,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: blog-app-svc
-  namespace: blog-app-ns
+  # namespace: blog-app-ns
   labels:
     app: blog-app
 spec:
   selector:
     app: blog-app
-  type: NodePort
   ports:
-  - port: 3000 
-    targetPort: 3000
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: LoadBalancer
