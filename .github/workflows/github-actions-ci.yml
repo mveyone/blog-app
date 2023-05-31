@@ -43,4 +43,5 @@ jobs:
     
     - name: Deploy to EKS
       run: |
+        kubectl delete -f blog-app.yml
         kubectl apply -f blog-app.yml
