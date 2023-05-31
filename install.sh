@@ -2,7 +2,7 @@
 echo "--------------------Installing Java--------------------"
 sudo apt-get update -y
 sudo apt upgrade -y 
-sudo apt-get install openjdk-8-jdk -y
+sudo apt-get install openjdk-11-jdk -y
 #Install Python
 echo "--------------------Installing Python--------------------"
 sudo apt-get update -y
@@ -16,13 +16,11 @@ sudo apt-get update -y
 sudo apt-get install python3-pip -y 
 #Install Jenkins 
 echo "--------------------Installing Jenkins--------------------"
-sudo apt -y install wget
-sudo wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update -y
-sudo apt-get install jenkins -y
-sudo apt install git
-sudo systemctl start jenkins
+sudo apt-get install default-jdk -y
+wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins -y 
 #Install docker
 echo "--------------------Installing Docker--------------------"
 sudo apt-get remove docker docker-engine docker.io containerd runc

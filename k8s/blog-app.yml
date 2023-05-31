@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blog-container
-        image: mveyone/blog-img
+        image: 628251107431.dkr.ecr.us-east-2.amazonaws.com/blog-app
         ports:
          - containerPort: 3000
 ---
