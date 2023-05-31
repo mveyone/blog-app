@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: blog-container
-        image: 628251107431.dkr.ecr.us-east-2.amazonaws.com/blog-app
+        image: 628251107431.dkr.ecr.us-east-2.amazonaws.com/blog-app:latest
         imagePullPolicy: Always
         ports:
          - containerPort: 80
