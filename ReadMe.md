@@ -2,7 +2,7 @@
 1. Create an EKS Cluster using this command:
 
 # here we in us-east-2
-eksctl create cluster --name blog-app-cluster --region us-east-2 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
+eksctl create cluster --name blog-cluster-2 --region us-east-2 --nodegroup-name linux-nodes --node-type t2.micro --nodes 2
 
 2. Then create .github folder and then create workflow folder inside .github folder 
 3. create file with .yml extension and write the workflow code

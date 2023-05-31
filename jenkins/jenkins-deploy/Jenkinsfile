@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'DEPLOYMENT')
+    }
+
+    stages {
+
+      stage('Update Kubeconfig') {
+          steps {
+            // You will need to install CloudBees AWS Credentials Plugin in Jenkins and add AWS Credentials first 
+              withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: "aws-credentials",
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
+                sh """
+                aws eks update-kubeconfig --name blog-cluster-3
+                """
+              }
+          }
+      }
+
+      stage('Deploy App') {
+          steps {
+            // You will need to install CloudBees AWS Credentials Plugin in Jenkins and add AWS Credentials first 
+              withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: "aws-credentials",
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
+                sh """
+                cd /k8s
+                kubectl apply -f deploy.yml
+                kubectl apply -f svc.yml
+                """
+                sleep(time: 120, unit: "SECONDS")
+              }
+          }
+      }
+
+      stage('Reveal APP URL') {
+          steps {
+            // You will need to install CloudBees AWS Credentials Plugin in Jenkins and add AWS Credentials first 
+              withCredentials([[
+                $class: 'AmazonWebServicesCredentialsBinding',
+                credentialsId: "aws-credentials",
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+                ]]) {
+                sh "aws elb describe-load-balancers | grep DNSName"
+              }
+          }
+      }
+  }
+}

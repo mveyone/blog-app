@@ -16,6 +16,7 @@ resource "aws_instance" "ubuntu-instance" {
     volume_type = "gp2"
     encrypted   = false
   }
+  user_data = "install.sh"
 }
 
 
