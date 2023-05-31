@@ -1,4 +1,4 @@
-#Install Java
+#Install Java latest
 echo "--------------------Installing Java--------------------"
 sudo apt-get update -y
 sudo apt upgrade -y 
