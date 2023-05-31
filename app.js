@@ -10,7 +10,7 @@ const app = express();
 const dbURI = "mongodb+srv://mvone:mvone123@cluster0.5agxbaq.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(result => app.listen(3000))
+  .then(result => app.listen(80))
   .catch(err => console.log(err));
 
 // register view engine
